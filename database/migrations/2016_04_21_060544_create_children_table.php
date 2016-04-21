@@ -12,6 +12,7 @@ class CreateChildrenTable extends Migration
      */
     public function up()
     {
+        Schema::create('children', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('user_id')->unsigned();
         $table->string('birthplace');
@@ -25,7 +26,7 @@ class CreateChildrenTable extends Migration
                   ->references('id')->on('users')
                   ->onDelete('cascade');
         $table->timestamps();
-
+        });
 
     }
 

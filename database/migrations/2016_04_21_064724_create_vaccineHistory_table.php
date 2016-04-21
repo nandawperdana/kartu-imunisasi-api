@@ -12,16 +12,21 @@ class CreateVaccineHistoryTable extends Migration
      */
     public function up()
     {
+        Schema::create('vaccineHistory', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('children_id')->unsigned();
+        $table->integer('child_id')->unsigned();
+
+        $table->integer('vaccine_id')->unsigned();
         $table->date('date');
         $table->string('place');
-        $table->string('vaccine_type');
-        $table->foreign('children_id')
+        $table->foreign('vaccine_id')
+                  ->references('id')->on('attributes')
+                  ->onDelete('cascade');
+        $table->foreign('child_id')
                   ->references('id')->on('children')
                   ->onDelete('cascade');
         $table->timestamps();
-
+    });
     }
 
     /**
