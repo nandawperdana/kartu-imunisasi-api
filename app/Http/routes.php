@@ -15,17 +15,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
-Route::group(['middleware' => ['web']], function () {
-    //
+
+Route::resource('attributes','AttributesController');
+Route::resource('users','UsersController');
+Route::resource('children','ChildrenController');
+Route::resource('vaccineHistory','VaccineHistoryController');
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' =>'Auth\PasswordController',
+]);
+
+Route::group(['prefix' => 'api/v1'], function()
+{
+	Route::post('authenticate','APIController@authenticate');
+	Route::resource('users','UsersAPIController');
+	Route::resource('children','ChildrenAPIController');
+	Route::resource('users.children','ChildrenAPIController', ['only' => ['index', 'show']]);
 });
