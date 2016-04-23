@@ -24,21 +24,12 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('statusInfo');
-            $table->integer('profession')->unsigned();
             $table->string('tempatLahir');
-            $table->string('tglLahir');
-            $table->integer('educLevId')->unsigned();
+            $table->date('tglLahir');
             $table->string('imgUsrFileName');
             $table->string('imgUsrFilePath');
-            $table->string('lastStudy');
             $table->timestamp('statusInfoUpAt');
             $table->rememberToken();
-            $table->foreign('educLevId')
-                  ->references('id')->on('attributes')
-                  ->onDelete('cascade');
-            $table->foreign('profession')
-                  ->references('id')->on('attributes')
-                  ->onDelete('cascade');
             $table->timestamps();
         });
     }
