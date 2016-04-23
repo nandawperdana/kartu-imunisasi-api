@@ -66,9 +66,8 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
-            'gender' => $data['gender'],
-            'avatarUrl' => $data['avatarUrl'],
+            'password' => bcrypt($data['password'])
+            /*'avatarUrl' => $data['avatarUrl'],
             'country' => $data['country'],
             'state' => $data['state'],
             'address' => $data['address'],
@@ -81,7 +80,7 @@ class AuthController extends Controller
             'imgUsrFileName' => $data['imgUsrFileName'],
             'imgUsrFilePath' => $data['imgUsrFilePath'],
             'lastStudy' => $data['lastStudy'],
-            'statusInfoUpAt' => $data['statusInfoUpAt']
+            'statusInfoUpAt' => $data['statusInfoUpAt']*/
         ]);
     }
 }

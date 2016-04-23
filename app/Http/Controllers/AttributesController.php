@@ -44,17 +44,7 @@ class AttributesController extends Controller
      */
     public function store(AttributeRequest $request)
     {
-        $attribute = Attribute::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'role' => 'admin',
-            'status' => 'enable'
-        ]);
-        //$attribute = attribute::create( $request->all());
-        //$attribute->address()->create($request->all());
+        $attribute = attribute::create( $request->all());
         return redirect('attributes');
     }
 

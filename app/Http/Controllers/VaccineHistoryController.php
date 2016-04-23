@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Child;
+use App\Attribute;
 use App\VaccineHistory;
 use App\Http\Requests\VaccineHistoryRequest;
 
@@ -22,8 +24,8 @@ class VaccineHistoryController extends Controller
      */
     public function index()
     {
-        $vaccineHistory = vaccineHistory::all();
-        return view('vaccineHistory.index', compact('vaccineHistory'));
+        $vaccineHistories = VaccineHistory::all();
+        return view('vaccineHistories.index', compact('vaccineHistories'));
     }
 
     /**
@@ -33,7 +35,9 @@ class VaccineHistoryController extends Controller
      */
     public function create()
     {
-        return view('vaccineHistory.create');
+        $children = child::lists('name','id');
+        $attributes = attribute::lists('name','id');
+        return view('vaccineHistories.create', compact('children','attributes'));
     }
 
     /**
@@ -44,16 +48,13 @@ class VaccineHistoryController extends Controller
      */
     public function store(VaccineHistoryRequest $request)
     {
-        $vaccineHistory = VaccineHistory::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password']),
-            'phone' => $request['phone'],
-            'address' => $request['address'],
-            'role' => 'admin',
-            'status' => 'enable'
-        ]);
-        //$vaccineHistory = vaccineHistory::create( $request->all());
+        $child = child::find($request['child_id']);
+        $vaccine = attribute::find($request['attribute_id']);
+        $vaccineHistory = new VaccineHistory($request->all());
+        $vaccineHistory->child()->associate($child);
+        $vaccineHistory->attribute()->associate($vaccine);
+        $vaccineHistory->save();
+        //$vaccineHistory = VaccineHistory::create( $request->all());
         //$vaccineHistory->address()->create($request->all());
         return redirect('vaccineHistory');
     }
@@ -66,8 +67,8 @@ class VaccineHistoryController extends Controller
      */
     public function show($id)
     {
-        $vaccineHistory = vaccineHistory::findOrFail($id);
-        return view('vaccineHistory.show', compact('vaccineHistory'));
+        $vaccineHistory = VaccineHistory::findOrFail($id);
+        return view('vaccineHistories.show', compact('vaccineHistory'));
     }
 
     /**
@@ -78,8 +79,10 @@ class VaccineHistoryController extends Controller
      */
     public function edit($id)
     {
-        $vaccineHistory = vaccineHistory::findOrFail($id);
-        return view('vaccineHistory.edit', compact('vaccineHistory'));
+        $children = child::lists('name','id');
+        $attributes = attribute::lists('name','id');
+        $vaccineHistory = VaccineHistory::findOrFail($id);
+        return view('vaccineHistories.edit', compact('vaccineHistory','children','attributes'));
     }
 
     /**
@@ -91,7 +94,7 @@ class VaccineHistoryController extends Controller
      */
     public function update(VaccineHistoryRequest $request, $id)
     {
-        $vaccineHistory = vaccineHistory::findOrFail($id);
+        $vaccineHistory = VaccineHistory::findOrFail($id);
         $vaccineHistory->update($request->all());
         return redirect('vaccineHistory');
     }
@@ -104,7 +107,7 @@ class VaccineHistoryController extends Controller
      */
     public function destroy($id)
     {
-        $vaccineHistory = vaccineHistory::findOrFail($id);
+        $vaccineHistory = VaccineHistory::findOrFail($id);
         $vaccineHistory->delete();
         return redirect('vaccineHistory');
     }
