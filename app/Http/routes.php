@@ -32,5 +32,7 @@ Route::group(['prefix' => 'api/v1'], function()
 	Route::post('authenticate','APIController@authenticate');
 	Route::resource('users','UsersAPIController');
 	Route::resource('children','ChildrenAPIController');
+	Route::resource('attributes','AttributesAPIController');
+	Route::resource('histories','VaccineHistoriesAPIController');
 	Route::resource('users.children','ChildrenAPIController', ['only' => ['index', 'show']]);
 });
