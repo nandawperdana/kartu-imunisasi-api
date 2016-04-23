@@ -22,19 +22,54 @@
 	</div>
 @endif
 
-<div class="form-group">
+	<div class="form-group">
 		{!! Form::label('phone', 'Phone Number', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
 			{!! Form::text('phone', null, ['value'=>'{{ old("phone") }}', 'class'=>'form-control']) !!}		
 		</div>
 	</div>
 
+	<div class="form-group">
+		{!! Form::label('gender', 'Gender', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::select('gender', array('L' => 'Men', 'P' => 'Women'),null,['value'=>'{{ old("gender") }}', 'class'=>'form-control']) !!}
+
+		</div>
+	</div>
 
 
 	<div class="form-group">
 		{!! Form::label('address', 'Address', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
 			{!! Form::text('address', null, ['value'=>'{{ old("address") }}', 'class'=>'form-control']) !!}		
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('state', 'State', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('state', null, ['value'=>'{{ old("state") }}', 'class'=>'form-control']) !!}		
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('country', 'Country', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('country', null, ['value'=>'{{ old("country") }}', 'class'=>'form-control']) !!}		
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('tglLahir', 'Birthday', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('tglLahir', null, ['value'=>'{{ old("tglLahir") }}', 'class'=>'form-control','data-date-viewmode' => 'years','data-date-format'=>'yyyy-mm-dd']) !!}		
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('tempatLahir', 'Birth place', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('tempatLahir', null, ['value'=>'{{ old("tempatLahir") }}', 'class'=>'form-control']) !!}		
 		</div>
 	</div>
 
