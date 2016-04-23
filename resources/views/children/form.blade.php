@@ -1,24 +1,47 @@
 {!! csrf_field() !!}
 <div class="form-group">
-	{!! Form::label('imei', 'Imei', ['class' => 'col-md-4 control-label']) !!}
+	{!! Form::label('name', 'Full Name', ['class' => 'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('imei', null, ['value'=>'{{ old("imei") }}', 'class'=>'form-control']) !!}		
+		{!! Form::text('name', null, ['value'=>'{{ old("name") }}', 'class'=>'form-control']) !!}		
 	</div>
 </div>
 
 <div class="form-group">
-	{!! Form::label('trackerPhone', 'Phone Number', ['class' => 'col-md-4 control-label']) !!}
+	{!! Form::label('height', 'Height (cm)', ['class' => 'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::text('trackerPhone', null, ['value'=>'{{ old("trackerPhone") }}', 'class'=>'form-control']) !!}		
+		{!! Form::text('height', null, ['value'=>'{{ old("height") }}', 'class'=>'form-control']) !!}		
 	</div>
 </div>
 
 <div class="form-group">
-	{!! Form::label('balance', 'Balance', ['class' => 'col-md-4 control-label']) !!}
+	{!! Form::label('weight', 'Weight (kg)', ['class' => 'col-md-4 control-label']) !!}
 	<div class="col-md-6">
-		{!! Form::number('balance', null, ['value'=>'{{ old("balance") }}', 'class'=>'form-control']) !!}		
+		{!! Form::text('weight', null, ['value'=>'{{ old("weight") }}', 'class'=>'form-control']) !!}		
 	</div>
 </div>
+
+	<div class="form-group">
+		{!! Form::label('gender', 'Gender', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::select('gender', array('L' => 'Men', 'P' => 'Women'),null,['value'=>'{{ old("gender") }}', 'class'=>'form-control']) !!}
+
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{!! Form::label('birthday', 'Birthday', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('birthday', null, ['value'=>'{{ old("birthday") }}', 'class'=>'form-control tglLahir','data-date-viewmode' => 'years','data-date-format'=>'yyyy-mm-dd']) !!}		
+		</div>
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('birthplace', 'Birth place', ['class' => 'col-md-4 control-label']) !!}
+		<div class="col-md-6">
+			{!! Form::text('birthplace', null, ['value'=>'{{ old("birthplace") }}', 'class'=>'form-control']) !!}		
+		</div>
+	</div>
 
 <div class="form-group">
 	{!! Form::label('user_id', 'User', ['class' => 'col-md-4 control-label']) !!}
