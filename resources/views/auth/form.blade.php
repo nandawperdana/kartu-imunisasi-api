@@ -32,7 +32,7 @@
 		</div>
 	</div>
 @endif
-@if(Request::is('auth/register'))
+<!-- @if(Request::is('auth/register'))
 	<div class="form-group">
 		{!! Form::label('phone', 'Phone Number', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
@@ -46,7 +46,7 @@
 			{!! Form::text('address', null, ['value'=>'{{ old("address") }}', 'class'=>'form-control']) !!}		
 		</div>
 	</div>
-@endif
+@endif -->
 
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">
