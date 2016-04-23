@@ -14,16 +14,13 @@ class User extends Authenticatable
     //$table->string('name');
             
     protected $fillable = [
-        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','profession','tempatLahir','tglLahir','educLevId','imgUsrFileName','imgUsrFilePath','lastStudy','statusInfoUpAt'
+        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','tempatLahir','tglLahir','imgUsrFileName','imgUsrFilePath','statusInfoUpAt'
     ];
 
     public function children(){
         return $this->hasMany('\App\Child');
     }
 
-    public function attribute(){
-        return $this->belongsTo('App\Attribute');
-    }
 
     /**
      * The attributes excluded from the model's JSON form.
