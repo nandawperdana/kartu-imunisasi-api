@@ -21,11 +21,7 @@ class APIController extends Controller{
 		    $user = User::create([
 			            'name' => $request['name'],
 			            'email' => $request['email'],
-			            'password' => bcrypt($request['password']),
-			            'phone' => $request['phone'],
-			            'address' => $request['address'],
-			            'role' => 'admin',
-			            'status' => 'enable'
+			            'password' => bcrypt($request['password'])
         		]);
 		}catch (Exception $e) {
 		    return Response::json(['error' => 'User already exists.'], HttpResponse::HTTP_CONFLICT);
