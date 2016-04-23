@@ -1,7 +1,7 @@
 <?php
 namespace App\Acme\Transformers;
 
-class AtrributeTransformer extends Transformer{
+class AttributeTransformer extends Transformer{
 	
 	public function transform($attribute){
 		return [

@@ -7,7 +7,6 @@ class UserTransformer extends Transformer{
 		return [
 			'name' => $user['name'],
 			'email' => $user['email'],
-			'password' => $user['password'],
 			'gender' => $user['gender'],
 			'avatarUrl' => $user['avatarUrl'],
 			'country' => $user['country'],
