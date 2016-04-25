@@ -7,7 +7,7 @@
 		<div class="panel-heading">Edit Profile</div>
 		<div class="panel-body">
 			@include('errors.form_error')
-			{!! Form::model($user, ['method'=>'PATCH','action'=> ['UsersController@update', $user->id], 'class'=>'form-horizontal']) !!}
+			{!! Form::model($user, ['method'=>'PATCH','action'=> ['UsersController@update', $user->id], 'class'=>'form-horizontal','files' => true]) !!}
 				@include('users.form', ['submitText'=>'Update Profile'])
 			{!! Form::close() !!}
 

@@ -8,6 +8,7 @@
 			<div class="panel-body">
 				<table class="table table-bordered" >
 				<th>No.</th>
+				<th>Picture</th>
 				<th>Name</th>
 				<th>e-mail</th>
 				<th>Phone Number</th>
@@ -17,6 +18,7 @@
 				@foreach ($users as $user)	
 					<tr>
 					<td>{{$var++}}</td>
+					<td>{{ Html::image($user->imgUsrFilePath,null,['class' => 'img-circle']) }}</td>
 					<td>{{ $user->name }}</td>
 					<td>{{ $user->email }}</td>
 					<td>{{ $user->phone }}</td>

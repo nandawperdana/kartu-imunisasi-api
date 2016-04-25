@@ -8,7 +8,7 @@
 		<div class="panel-body">
 			@include('errors.form_error')
 
-			{!! Form::open(['url'=>'children', 'class'=>'form-horizontal']) !!}
+			{!! Form::open(['url'=>'children', 'class'=>'form-horizontal','files' => true]) !!}
 				@include('children.form', ['submitText'=>'Add Child'])
 			{!! Form::close() !!}
 

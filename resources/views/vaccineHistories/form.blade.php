@@ -10,7 +10,7 @@
 <div class="form-group">
 		{!! Form::label('date', 'Date', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
-			{!! Form::text('date', null, ['value'=>'{{ old("date") }}', 'class'=>'form-control tglLahir','data-date-format'=>'yyyy-mm-dd']) !!}		
+			{!! Form::text('date', null, ['value'=>'{{ old("date") }}', 'class'=>'form-control dp1','data-date-format'=>'yyyy-mm-dd']) !!}		
 		</div>
 	</div>
 

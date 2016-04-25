@@ -9,6 +9,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     {{ Html::style('assets/datepicker/css/datepicker.css') }}
+    <style type="text/css">
+        .img-circle {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px; 
+        }
+    </style>
 
 </head>
 <body>
@@ -37,7 +44,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     {{ Html::script('assets/datepicker/js/bootstrap-datepicker.js') }}
     <script type="text/javascript">
-        $('.tglLahir').datepicker();
+        $('.dp1').datepicker();
     </script>
 </body>
 </html>

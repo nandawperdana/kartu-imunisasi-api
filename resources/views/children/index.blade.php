@@ -8,6 +8,7 @@
 			<div class="panel-body">
 				<table class="table table-bordered" >
 				<th>No.</th>
+				<th>Picture</th>
 				<th>Name</th>
 				<th>Gender</th>
 				<th>Height</th>
@@ -18,6 +19,7 @@
 				@foreach ($children as $child)	
 					<tr>
 					<td>{{$var++}}</td>
+					<td>{{ Html::image($child->PathFoto,null,['class' => 'img-circle']) }}</td>
 					<td>{{ $child->name }}</td>
 					<td> {{ $child->gender }}</td>
 					<td> {{ $child->height }} &nbsp;cm</td>

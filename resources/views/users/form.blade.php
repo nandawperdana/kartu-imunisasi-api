@@ -62,7 +62,7 @@
 	<div class="form-group">
 		{!! Form::label('tglLahir', 'Birthday', ['class' => 'col-md-4 control-label']) !!}
 		<div class="col-md-6">
-			{!! Form::text('tglLahir', null, ['value'=>'{{ old("tglLahir") }}', 'class'=>'form-control','data-date-viewmode' => 'years','data-date-format'=>'yyyy-mm-dd']) !!}		
+			{!! Form::text('tglLahir', null, ['value'=>'{{ old("tglLahir") }}', 'class'=>'form-control dp1','data-date-viewmode' => 'years','data-date-format'=>'yyyy-mm-dd']) !!}		
 		</div>
 	</div>
 
@@ -72,6 +72,15 @@
 			{!! Form::text('tempatLahir', null, ['value'=>'{{ old("tempatLahir") }}', 'class'=>'form-control']) !!}		
 		</div>
 	</div>
+
+	<div class="form-group">
+    {!! Form::label('imgUsrFileName', 'Picture', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+    <span class="btn btn-default">
+    {!! Form::file('imgUsrFileName', ['value'=>'{{ old("imgUsrFileName") }}']) !!}
+    </span>
+    </div>
+</div>
 
 
 

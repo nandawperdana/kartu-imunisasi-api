@@ -8,8 +8,8 @@
 		<div class="panel-body">
 			@include('errors.form_error')
 
-			{!! Form::open(['url'=>'users', 'class'=>'form-horizontal']) !!}
-				@include('users.form', ['submitText'=>'Add Owner'])
+			{!! Form::open(['url'=>'users', 'class'=>'form-horizontal','files' => true]) !!}
+				@include('users.form', ['submitText'=>'Add Parents'])
 			{!! Form::close() !!}
 
 		</div>

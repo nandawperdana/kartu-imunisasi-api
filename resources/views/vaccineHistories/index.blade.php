@@ -18,6 +18,7 @@
 					
 					<tr>
 					<td>{{$var++}}</td>
+					
 					<td>{{ $history->child->name }} </td>
 					<td>{{ $history->attribute->name }} </td>
 					<td>{{ $history->date }}</td>
