@@ -15,7 +15,13 @@ class ChildrenAPIController extends APIController
 	
 	public function index($id = null)
 	{
-		$children = $id ? User::findOrFail($id)->children : Child::all();
+		$children = $id ? User::find($id) : Child::all();
+		if( ! $children ){
+			return $this->respondNotFound('children does not exists');
+		}else{
+			$children = $children->children;
+		}
+
 		return $this->respond([
 			'data' => $this->childrenTransformer->transformCollection($children->all())
 		]);

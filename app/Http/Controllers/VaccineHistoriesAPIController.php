@@ -15,7 +15,14 @@ class VaccineHistoriesAPIController extends APIController
 	
 	public function index($id = null)
 	{
-		$vaccineHistory = $id ? Child::findOrFail($id)->vaccineHistory : VaccineHistory::all();
+		$vaccineHistory = $id ? Child::find($id) : VaccineHistory::all();
+		
+		if( ! $vaccineHistory ){
+			return $this->respondNotFound('vaccineHistory does not exists');
+		}else{
+			$vaccineHistory = $vaccineHistory->vaccineHistory;
+		}
+
 		return $this->respond([
 			'data' => $this->vaccineHistoryTransformer->transformCollection($vaccineHistory->all())
 		]);
