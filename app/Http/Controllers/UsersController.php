@@ -44,15 +44,38 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $imgUsrFileName = null;
+        $imgUsrFilePath = null;
+        if($request->hasFile('imgUsrFileName')){
+            $imgUsrFileName = time().'.'.$request->file('imgUsrFileName')->getClientOriginalExtension();
+            $imgUsrFilePath = '/images/parents/' .$imgUsrFileName;
+            $request->file('imgUsrFileName')->move(
+                base_path() . '/public/images/parents/', $imgUsrFileName
+            );
+        }
+        
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
-            'phone' => $request['phone'],
+            'country' => $request['country'],
+            'state' => $request['state'],
             'address' => $request['address'],
-            'role' => 'admin',
-            'status' => 'enable'
+            'phone' => $request['phone'],
+            //'statusInfo' => $request['statusInfo'],
+            //'profession' => $request['profession'],
+            'tempatLahir' => $request['tempatLahir'],
+            'tglLahir' => $request['tglLahir'],
+            //'educLevId' => $request['educLevId'],
+            'imgUsrFileName' => $imgUsrFileName,
+            'imgUsrFilePath' => $imgUsrFilePath
+            //'lastStudy' => $request['lastStudy'],
+            //'statusInfoUpAt' => $request['statusInfoUpAt']
         ]);
+
+        
+
+        
         //$user = user::create( $request->all());
         //$user->address()->create($request->all());
         return redirect('users');
@@ -91,6 +114,17 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        $imgUsrFileName = null;
+        $imgUsrFilePath = null;
+        if($request->hasFile('imgUsrFileName')){
+            $imgUsrFileName = time().'.'.$request->file('imgUsrFileName')->getClientOriginalExtension();
+            $imgUsrFilePath = '/images/parents/' .$imgUsrFileName;
+            $request->file('imgUsrFileName')->move(
+                base_path() . '/public/images/parents/', $imgUsrFileName
+            );
+            $request['imgUsrFileName'] = $imgUsrFileName;
+            $request['imgUsrFilePath'] = $imgUsrFilePath;
+        }
         $user = user::findOrFail($id);
         $user->update($request->all());
         return redirect('users');

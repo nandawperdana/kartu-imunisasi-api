@@ -83,6 +83,18 @@ class ChildrenController extends Controller
      */
     public function store(ChildRequest $request)
     {
+        $FileNameFoto = null;
+        $PathFoto = null;
+        if($request->hasFile('FileNameFoto')){
+            $FileNameFoto = time().'.'.$request->file('FileNameFoto')->getClientOriginalExtension();
+            $PathFoto = '/images/children/' .$FileNameFoto;
+            $request->file('FileNameFoto')->move(
+                base_path() . '/public/images/children/', $FileNameFoto
+            );
+            $request['FileNameFoto'] = $FileNameFoto;
+            $request['PathFoto'] = $PathFoto;
+        }
+        
         $user = user::find($request['user_id']);
         // $child = new child($request->all());
         $child = $user->children()->create($request->all());
@@ -126,6 +138,17 @@ class ChildrenController extends Controller
      */
     public function update(ChildRequest $request, $id)
     {
+        $FileNameFoto = null;
+        $PathFoto = null;
+        if($request->hasFile('FileNameFoto')){
+            $FileNameFoto = time().'.'.$request->file('FileNameFoto')->getClientOriginalExtension();
+            $PathFoto = '/images/children/' .$FileNameFoto;
+            $request->file('FileNameFoto')->move(
+                base_path() . '/public/images/children/', $FileNameFoto
+            );
+            $request['FileNameFoto'] = $FileNameFoto;
+            $request['PathFoto'] = $PathFoto;
+        }
         $child = child::findOrFail($id);
         $child->update($request->all());
         return redirect('children');
