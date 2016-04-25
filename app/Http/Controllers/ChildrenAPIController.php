@@ -28,6 +28,23 @@ class ChildrenAPIController extends APIController
 		
 	}
 
+	public function upload($id){
+		$FileNameFoto = null;
+        $PathFoto = null;
+        if($request->hasFile('FileNameFoto')){
+            $FileNameFoto = time().'.'.$request->file('FileNameFoto')->getClientOriginalExtension();
+            $PathFoto = '/images/children/' .$FileNameFoto;
+            $request->file('FileNameFoto')->move(
+                base_path() . '/public/images/children/', $FileNameFoto
+            );
+            $request['FileNameFoto'] = $FileNameFoto;
+            $request['PathFoto'] = $PathFoto;
+        }
+        $child = child::findOrFail($id);
+        $child->update($request->all());
+        return $this->respondCreated('Photo sucessfully uploaded.');
+	}
+
 	public function show($id, $id2 = null)
 	{
 		

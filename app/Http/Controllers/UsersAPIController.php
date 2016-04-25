@@ -66,6 +66,23 @@ class UsersAPIController extends APIController
 			//'data'=>$this->userTransformer->transform($user)
 		//], 200);
 	}
+
+	public function upload($id){
+		$imgUsrFileName = null;
+        $imgUsrFilePath = null;
+        if($request->hasFile('imgUsrFileName')){
+            $imgUsrFileName = time().'.'.$request->file('imgUsrFileName')->getClientOriginalExtension();
+            $imgUsrFilePath = '/images/parents/' .$imgUsrFileName;
+            $request->file('imgUsrFileName')->move(
+                base_path() . '/public/images/parents/', $imgUsrFileName
+            );
+            $request['imgUsrFileName'] = $imgUsrFileName;
+            $request['imgUsrFilePath'] = $imgUsrFilePath;
+        }
+        $user = user::findOrFail($id);
+        $user->update($request->all());
+        return $this->respondCreated('Photo sucessfully uploaded.');
+	}
 /*
     public function edit($id)
     {
