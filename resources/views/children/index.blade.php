@@ -25,11 +25,11 @@
 					<td> {{ $child->height }} &nbsp;cm</td>
 					<td> {{ $child->weight }} &nbsp;kg</td>	
 					<td>{{ $child->user->name }} </td>
-					<!-- <td align="center"><a class="btn btn-primary" href="{{ url('/children', $child->id) }}" >Show Data</a></td> -->
-					<td align="center"><a class="btn btn-primary" href="{{ url('/children/'. $child->id . '/edit') }}" >Edit Data</a></td>
+					<td align="center"><a class="btn btn-primary" href="{{ url('/children', $child->id) }}" >Detail</a></td>
+					<td align="center"><a class="btn btn-primary" href="{{ url('/children/'. $child->id . '/edit') }}" >Edit</a></td>
 					<td align="center">{!! Form::open(array('url' => 'children/' . $child->id)) !!}
 	                    {!! Form::hidden('_method', 'DELETE') !!}
-	                    {!! Form::submit('Delete Data', array('class' => 'btn btn-warning')) !!}
+	                    {!! Form::submit('Delete', array('class' => 'btn btn-warning')) !!}
 	                {!! Form::close() !!}
 	                </td></tr>
 				@endforeach
