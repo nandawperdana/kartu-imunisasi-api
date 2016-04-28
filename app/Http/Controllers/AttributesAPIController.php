@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 //use App\Http\Requests;
 //use App\Http\Controllers\Controller;
-//use App\Http\Requests\AttributeRequest;
+use App\Http\Requests\AttributeRequest;
 use App\Attribute;
 //use App\Book;
 use Response;
@@ -25,9 +25,9 @@ class AttributesAPIController extends APIController
 	public function index()
 	{
 		$attributes = Attribute::all();
-		return Response::json([
-			'data' => $this->attributeTransformer->transformCollection($attributes->all())
-		], 200);
+		return Response::json(
+			$this->attributeTransformer->transformCollection($attributes->all())
+		, 200);
 		
 	}
 /*
@@ -35,14 +35,13 @@ class AttributesAPIController extends APIController
     {
     }*/
 
-    public function store(){
-		if( ! Input::get('name') or ! Input::get('gender')){
-			return $this->setStatusCode(422)
-						->respondWithError('Parameters failed validation for an Attribute.');
-		}
+    public function store(AttributeRequest $request){
+		//if( ! Input::get('name') or ! Input::get('gender')){
+			//return $this->setStatusCode(422)
+			//			->respondWithError('Parameters failed validation for an Attribute.');
+		//}
 		
-		Attribute::create(Input::all());
-		
+		$attribute = attribute::create( $request->all());
 		return $this->respondCreated('Attribute sucessfully created.');
 		/*return $this->setStatusCode(201)->respond([
 			'message' => 'Attribute sucessfully created.',
@@ -58,7 +57,7 @@ class AttributesAPIController extends APIController
 		}
 		
 		return $this->respond([
-			'data'=>$this->attributeTransformer->transform($attribute)
+				$this->attributeTransformer->transform($attribute)
 		]);
 		//return Response::json([
 			//'data' => $attribute->toArray()
@@ -66,27 +65,37 @@ class AttributesAPIController extends APIController
 			//'data'=>$this->attributeTransformer->transform($attribute)
 		//], 200);
 	}
-/*
-    public function edit($id)
+	public function update(AttributeRequest $request, $id)
     {
-    }
-
-    public function update(AttributeRequest $request, $id)
-    {
+    	$user = user::find($id);
+        if( ! $user ){
+			return $this->respondNotFound('Attribute does not exists');
+		}else{
+        	$user->update($request->all());
+        	return $this->respondCreated('Attribute sucessfully updated.');
+    	}
     }
 
     public function destroy($id)
     {
-    }*/
-	/*
-	private function transformCollection($attributes){
-		return array_map([$this,'transform'], $attributes->toArray());
+    	$user = user::find($id);
+        if( ! $user ){
+			return $this->respondNotFound('Attribute does not exists');
+		}else{
+    		$user = user::findOrFail($id);
+        	$user->delete();
+        	return $this->respondCreated('Attribute sucessfully deleted.');
+    	}
+    }
+
+    public function shows($type){
+		$attribute = Attribute::where('type',$type)->get();
+		if( ! $attribute ){
+			return $this->respondNotFound('Attribute does not exists');
+		}
+		return $this->respond(
+				$this->attributeTransformer->transformCollection($attribute->all())
+		);
 	}
 	
-	private function transform($attribute){
-		return[
-			'name' => $attribute['name'],
-			'gender' => $attribute['gender']
-		];
-	}*/
 }
