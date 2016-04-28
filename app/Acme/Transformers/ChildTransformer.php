@@ -8,6 +8,7 @@ class ChildTransformer extends Transformer{
 			
 			'id' => $child['id'],
 			'user_id'=> $child['user_id'],
+			'name'=> $child['name'],
 			'birthplace'=> $child['birthplace'],
 			'birthday'=> $child['birthday'],
 			'weight'=> $child['weight'],
