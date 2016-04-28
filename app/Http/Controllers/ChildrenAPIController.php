@@ -60,28 +60,7 @@ class ChildrenAPIController extends APIController
         
         
 	}
-	public function upload(Request $request,$id){
-		$imgUsrFileName = null;
-		$imgUsrFilePath = null;
-        $user = user::find($id);
-        if( ! $user ){
-			return $this->respondNotFound('User does not exists');
-		}
-        if($request->hasFile('image')){
-            $imgUsrFileName = time().'.'.$request->file('image')->getClientOriginalExtension();
-            $imgUsrFilePath = '/images/parents/' .$imgUsrFileName;
-            $request->file('image')->move(
-                base_path() . '/public/images/parents/', $imgUsrFileName
-            );
-            $request['imgUsrFileName'] = $imgUsrFileName;
-            $request['imgUsrFilePath'] = $imgUsrFilePath;
-
-            
-        	$user->update($request->all());
-        	return $this->respondCreated('Photo sucessfully uploaded.');
-        }
-        
-	}
+	
 
 	public function show($id, $id2 = null)
 	{
