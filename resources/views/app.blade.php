@@ -32,7 +32,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbar">
-                @include('pages.nav')
+                @include('Pages.nav')
             </div>
         </div>
     </nav>
