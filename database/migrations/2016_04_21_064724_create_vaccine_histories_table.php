@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVaccineHistoryTable extends Migration
+class CreateVaccineHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
