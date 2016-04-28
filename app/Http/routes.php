@@ -30,9 +30,12 @@ Route::controllers([
 Route::group(['prefix' => 'api/v1'], function()
 {
 	Route::post('authenticate','APIController@authenticate');
+	Route::post('signup','APIController@signup');
 	Route::resource('users','UsersAPIController');
+	Route::post('users/{id}/upload','UsersAPIController@upload');
 	Route::resource('children','ChildrenAPIController');
 	Route::resource('attributes','AttributesAPIController');
+	Route::get('attributes/shows/{type}','AttributesAPIController@shows');
 	Route::resource('histories','VaccineHistoriesAPIController');
 	Route::resource('users.children','ChildrenAPIController', ['only' => ['index', 'show']]);
 	Route::resource('children.histories','VaccineHistoriesAPIController', ['only' => ['index', 'show']]);
