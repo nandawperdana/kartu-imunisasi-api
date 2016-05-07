@@ -21,6 +21,7 @@ Route::resource('attributes','AttributesController');
 Route::resource('users','UsersController');
 Route::resource('children','ChildrenController');
 Route::resource('vaccineHistory','VaccineHistoryController');
+Route::resource('reminders','RemindersController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -35,6 +36,7 @@ Route::group(['prefix' => 'api/v1'], function()
 	Route::post('users/{id}/upload','UsersAPIController@upload');
 	Route::resource('children','ChildrenAPIController');
 	Route::resource('attributes','AttributesAPIController');
+	Route::resource('reminders','RemindersAPIController');
 	Route::get('attributes/shows/{type}','AttributesAPIController@shows');
 	Route::resource('histories','VaccineHistoriesAPIController');
 	Route::resource('users.children','ChildrenAPIController', ['only' => ['index', 'show']]);

@@ -11,4 +11,8 @@ class Attribute extends Model
 	public function vaccineHistory(){
 		return $this->hasMany('\App\Attribute');
 	}
+
+	public function reminder(){
+		return $this->hasMany('\App\Reminder');
+	}
 }

@@ -12,23 +12,7 @@ use App\Http\Requests\ChildRequest;
 
 class ChildrenController extends Controller
 {
-    //public function store($id){ 
-    // 	    $dataChild['user_id'] = $id;
-    //         $dataChild['imei'] = '01010101';
-    //         $dataChild['childPhone'] = '0888'; 
-    //         $dataChild['balance'] = '999';
-    //         $dataChild['status'] = 'enable';
-    //         $dataChild['user_id'] = $newUser->id;
-    //         $newChild = Child::create($dataChild);
-    //     	if($newChild){
-    //             $response = array('success' => 1 );
-    //             return Response::json([$response], '201');
-    //         }else{
-    //             $response = array('childSuccess' => 0 );
-    //             return Response::json([$response], '401');
-    //         }
-	
-    // }
+    
     public function getSummaryById($id){
 	    // create our user data for the authentication
 	    $user = User::find($id);

@@ -149,6 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider',
 
         /*
          * Application Service Providers...
@@ -208,6 +209,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
+        'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification',
 
     ],
 

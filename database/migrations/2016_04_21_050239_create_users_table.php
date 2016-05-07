@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('imgUsrFileName');
             $table->string('imgUsrFilePath');
             $table->timestamp('statusInfoUpAt');
+            $table->string('gcm_id');
             $table->rememberToken();
             $table->timestamps();
         });

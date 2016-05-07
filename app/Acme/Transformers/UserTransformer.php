@@ -16,7 +16,8 @@ class UserTransformer extends Transformer{
 			'tempatLahir' => $user['tempatLahir'],
 			'tglLahir' => $user['tglLahir'],
 			'imgUsrFileName' => $user['imgUsrFileName'],
-			'imgUsrFilePath' => $user['imgUsrFilePath']
+			'imgUsrFilePath' => $user['imgUsrFilePath'],
+			'gcm_id' => $user['gcm_id'],
 		];
 	}
 }

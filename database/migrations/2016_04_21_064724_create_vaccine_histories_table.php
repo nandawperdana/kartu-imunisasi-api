@@ -26,8 +26,9 @@ class CreateVaccineHistoriesTable extends Migration
                   ->references('id')->on('children')
                   ->onDelete('cascade');
         $table->timestamps();
-    });
+        });
     }
+    
 
     /**
      * Reverse the migrations.

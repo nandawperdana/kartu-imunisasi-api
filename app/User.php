@@ -14,7 +14,7 @@ class User extends Authenticatable
     //$table->string('name');
             
     protected $fillable = [
-        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','tempatLahir','tglLahir','imgUsrFileName','imgUsrFilePath','statusInfoUpAt'
+        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','tempatLahir','tglLahir','imgUsrFileName','imgUsrFilePath','statusInfoUpAt','gcm_id'
     ];
 
     public function children(){
