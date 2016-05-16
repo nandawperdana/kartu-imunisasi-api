@@ -28,10 +28,13 @@ Route::controllers([
 	'password' =>'Auth\PasswordController',
 ]);
 
+
+
 Route::group(['prefix' => 'api/v1'], function()
 {
 	Route::post('authenticate','APIController@authenticate');
 	Route::post('signup','APIController@signup');
+	Route::get('facebook/{token}','APIController@fbLogin');
 	Route::resource('users','UsersAPIController');
 	Route::post('users/{id}/upload','UsersAPIController@upload');
 	Route::resource('children','ChildrenAPIController');
