@@ -48,13 +48,16 @@ class APIController extends Controller{
 	public function fbLogin($token){
 		try{
 	    	Facebook::setDefaultAccessToken($token);
-	    	$response = Facebook::get('/me?fields=id,name,email');
-	    	$eventNode = $response->getGraphUser();
+	    	$response = Facebook::get('/me?fields=id,name,email,picture');
+	    	$facebookUser = $response->getGraphUser();
 		} catch(\Facebook\Exceptions\FacebookSDKException $e) {
 	  		dd($e->getMessage());
 		}
-		print_r($eventNode);	
-		User::createOrUpdateGraphNode($eventNode);
+		//unset($facebookUser['id']);
+		$user = User::createOrUpdateGraphNode($facebookUser);
+		$token = JWTAuth::fromUser($user);
+
+	   	return Response::json(compact('token'));
 	
 	}
 
