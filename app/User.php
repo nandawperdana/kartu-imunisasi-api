@@ -7,22 +7,18 @@ use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
 
 class User extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    //$table->string('name');
-            
-    protected $fillable = [
-        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','tempatLahir','tglLahir','imgUsrFileName','imgUsrFilePath','statusInfoUpAt','gcm_id'
-    ];
-
     use SyncableGraphNodeTrait;
 
-    protected static $facebook_field_aliases = [
+    protected static $graph_node_fillable_fields = ['email', 'imgUsrFilePath','name','facebook_id'];
+    protected static $graph_node_field_aliases = [
+        'id' => 'facebook_id',
         'email' => 'email',
         'picture.url' => 'imgUsrFilePath',
+        'name' => 'name',
+    ];
+            
+    protected $fillable = [
+        'name','email','password','gender','avatarUrl','country','state','address','phone','statusInfo','tempatLahir','tglLahir','imgUsrFileName','imgUsrFilePath','statusInfoUpAt','gcm_id','facebook_id'
     ];
 
     public function children(){
