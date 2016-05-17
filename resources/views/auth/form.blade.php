@@ -51,5 +51,6 @@
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">
 		{!! Form::submit($submitText, ['class'=>'btn btn-primary']) !!}
+		<a href="{{$login_url}}" class="btn btn-primary">Login with Facebook</a>
 	</div>
 </div>
