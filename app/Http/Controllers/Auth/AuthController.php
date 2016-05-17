@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Facebook;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class AuthController extends Controller
 {
@@ -82,5 +84,11 @@ class AuthController extends Controller
             'lastStudy' => $data['lastStudy'],
             'statusInfoUpAt' => $data['statusInfoUpAt']*/
         ]);
+    }
+
+    public function LoginPage()
+    {
+        $login_url = Facebook::getLoginUrl(['email']);
+        return view('auth.login', compact('login_url'));
     }
 }
