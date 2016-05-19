@@ -149,8 +149,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
-        'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider',
-
+        
         /*
          * Application Service Providers...
          */
