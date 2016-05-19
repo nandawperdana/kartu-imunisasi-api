@@ -10,6 +10,8 @@ use Illuminate\Http\Response as StatusCode;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Facebook;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class APIController extends Controller{
 	
@@ -41,6 +43,22 @@ class APIController extends Controller{
 			return response()->json(['error' => 'could_not_create_token'], 500);
 		}		
 		return response()->json(compact('token'));
+	}
+
+	public function fbLogin($token){
+		try{
+	    	Facebook::setDefaultAccessToken($token);
+	    	$response = Facebook::get('/me?fields=id,name,email,picture');
+	    	$facebookUser = $response->getGraphUser();
+		} catch(\Facebook\Exceptions\FacebookSDKException $e) {
+	  		dd($e->getMessage());
+		}
+		//unset($facebookUser['id']);
+		$user = User::createOrUpdateGraphNode($facebookUser);
+		$token = JWTAuth::fromUser($user);
+
+	   	return Response::json(compact('token'));
+	
 	}
 
 	protected $statusCode = 200;

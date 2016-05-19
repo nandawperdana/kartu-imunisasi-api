@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('imgUsrFilePath');
             $table->timestamp('statusInfoUpAt');
             $table->string('gcm_id');
+            $table->bigInteger('facebook_id')->unsigned()->index();
             $table->rememberToken();
             $table->timestamps();
         });

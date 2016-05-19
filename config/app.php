@@ -149,7 +149,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
-        
         /*
          * Application Service Providers...
          */
@@ -209,6 +208,7 @@ return [
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
         'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification',
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
 
     ],
 
