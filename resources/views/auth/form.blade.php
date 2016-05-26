@@ -50,7 +50,7 @@
 <div class="form-group">
 	<div class="col-md-6 col-md-offset-4">
 		{!! Form::submit($submitText, ['class'=>'btn btn-primary']) !!}
-		@if(Request::is('auth/login'))
+		@if(Request::is('login'))
 		<a href="{{$login_url}}" class="btn btn-primary">Login with Facebook</a>
 		@endif
 	</div>
