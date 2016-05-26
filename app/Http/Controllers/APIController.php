@@ -5,6 +5,7 @@ use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Response;
+use App\Acme\Transformers\UserTransformer;
 //use Auth;
 use Illuminate\Http\Response as StatusCode;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
@@ -15,6 +16,11 @@ use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class APIController extends Controller{
 	
+	protected $userTransformer;
+	
+	function __construct(UserTransformer $userTransformer){
+		$this->userTransformer = $userTransformer;
+	}
 	public function signup(Request $request)
 	{
 		//$credentials = $request->only('email', 'password');
@@ -30,19 +36,22 @@ class APIController extends Controller{
 
 	   	$token = JWTAuth::fromUser($user);
 
-	   	return Response::json(compact('token'));
+	   	return Response::json(compact('token','user'));
 	}
 	public function authenticate(Request $request){
 		$credentials = $request->only('email', 'password');
 		try {
 			if (! $token = JWTAuth::attempt($credentials)) {
 				return response()->json(['error' => 'invalid_credentials'], 401);
+			}else{
+				$user = User::where('email', $credentials["email"])->get();
+				$user = $this->userTransformer->transform($user[0]);
 			}
 
 		} catch (JWTException $e) {
 			return response()->json(['error' => 'could_not_create_token'], 500);
 		}		
-		return response()->json(compact('token'));
+		return response()->json(compact('token','user'));
 	}
 
 	public function fbLogin($token){
@@ -57,7 +66,7 @@ class APIController extends Controller{
 		$user = User::createOrUpdateGraphNode($facebookUser);
 		$token = JWTAuth::fromUser($user);
 
-	   	return Response::json(compact('token'));
+	   	return Response::json(compact('token','user'));
 	
 	}
 
