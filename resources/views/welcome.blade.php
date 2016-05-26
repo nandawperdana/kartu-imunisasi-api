@@ -30,7 +30,19 @@
     </nav>
 
     @yield('content')
-
+    
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDFSdY_4-2pUQcmlooi3VhJbj9-G7kwXsM",
+    authDomain: "kartu-imunisasi-f624d.firebaseapp.com",
+    databaseURL: "https://kartu-imunisasi-f624d.firebaseio.com",
+    storageBucket: "kartu-imunisasi-f624d.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+    
     <!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
